@@ -1,94 +1,129 @@
-# Integer Analyzer (Python)
+# Lab Performance C1
 
-## 📌 Overview
+## Overview
+This lab contains two Python programs demonstrating basic programming concepts including user input handling, list operations, and object-oriented programming with classes.
 
-This simple Python program takes a list of integers from the user, then:
+## Question 1: Integer Analyzer
+A program that takes a list of integers from user input, finds the largest and smallest numbers, and calculates their difference.
 
-* Finds the **largest number**
-* Finds the **smallest number**
-* Calculates the **difference** between them
+### How it Works
+1. Prompts user to enter integers separated by spaces
+2. Splits the input string and converts to integers
+3. Uses built-in `max()` and `min()` functions to find extremes
+4. Calculates difference between largest and smallest
 
-It is designed to be **easy to understand**, beginner-friendly, and runs directly from the terminal.
-
----
-
-## 🛠️ How the Program Works
-
-1. The user enters integers separated by spaces.
-2. The input string is split into individual values.
-3. Each value is converted into an integer.
-4. The program calculates:
-
-   * Maximum value
-   * Minimum value
-   * Difference (max − min)
-5. The results are displayed in a clean format.
-
----
-
-## 📄 Source Code
-
+### Source Code (q1.py)
 ```python
 userInput = input("Enter integers separeted by spaces: ")
 
 values = userInput.split()
 
-numbers = list(map(int, values))
+numbers = list(map(int,values))
 
 largest_number = max(numbers)
 smallest_number = min(numbers)
 
-difference = largest_number - smallest_number
+difference = largest_number-smallest_number
 
 print("Largest number: ", largest_number)
 print("Smallest number: ", smallest_number)
-print("Difference: ", difference)
+print("Difference: ",difference)
 ```
 
----
-
-## ▶️ Sample Input
-
+### Sample Input/Output
+**Input:**
 ```
 3 6 5 4 8 9
 ```
 
-## 📤 Sample Output
-
+**Output:**
 ```
 Largest number:  9
 Smallest number:  3
 Difference:  6
 ```
 
----
+## Question 2: Student Management System
+A program that demonstrates class creation and usage by managing student information with marks and calculations.
 
-## ✅ Requirements
+### Classes
+- **Student**: A class with name, marks1, marks2, and methods to calculate total and average marks.
 
-* Python 3.x
+### Source Code
 
----
+**student_class.py**
+```python
+class Student:
+    def __init__(self, name, marks1, marks2):
+        self.name = name
+        self.marks1 = marks1
+        self.marks2 = marks2
 
-## 🚀 How to Run
+    def total(self):
+        return self.marks1 + self.marks2
 
-1. Save the code in a file (e.g., `q1.py`)
-2. Open a terminal or command prompt
-3. Run the file using:
+    def average(self):
+        return self.total() / 2
+```
 
-   ```bash
-   python q1.py
-   ```
-4. Enter integers separated by spaces when prompted
+**main.py**
+```python
+from student_class import Student  
 
----
+students = []
 
-## 🎯 Learning Outcome
+for i in range(3):
+    print(f"\nEnter details for Student {i+1}")
+    name = input("Name: ")
+    marks1 = int(input("Marks 1: "))
+    marks2 = int(input("Marks 2: "))
+    
+    s = Student(name, marks1, marks2)
+    students.append(s)
 
-* Taking user input
-* Working with lists
-* Using built-in functions (`max()`, `min()`, `map()`)
-* Basic arithmetic operations
+print("\nStudent Results:")
+for s in students:
+    print("Name:", s.name)
+    print("Total Marks:", s.total())
+    print("Average Marks:", s.average())
+    print("----------------------")
+```
 
----
+### Sample Output
+```
+Enter details for Student 1
+Name: Alice
+Marks 1: 85
+Marks 2: 90
 
-**Author:** Syeda Farzan Amir Antora
+Enter details for Student 2
+Name: Bob
+Marks 1: 78
+Marks 2: 82
+
+Enter details for Student 3
+Name: Charlie
+Marks 1: 92
+Marks 2: 88
+
+Student Results:
+Name: Alice
+Total Marks: 175
+Average Marks: 87.5
+----------------------
+Name: Bob
+Total Marks: 160
+Average Marks: 80.0
+----------------------
+Name: Charlie
+Total Marks: 180
+Average Marks: 90.0
+----------------------
+```
+
+### Requirements
+- Python 3.x
+
+### How to Run
+1. For q1.py: `python q1.py`
+2. For q2: Navigate to q2/ directory, run `python main.py`
